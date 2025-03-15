@@ -143,3 +143,21 @@ def game_over_screen(score):
     score_text = font.render(f"Score: {score}", True, YELLOW)
     restart_text = font.render("Pressione ENTER para jogar:", True, WHITE)
     quit_text = font.render("Pressione Q para sair:", True, WHITE)
+    
+screen.blit(game_over_text, (WIDTH // 2 - game_over_text.get_width() // 2, HEIGHT // 3))
+screen.blit(score_text, (WIDTH // 2 - score_text.get_width() // 2, HEIGHT // 2))
+screen.blit(restart_text, (WIDTH // 2 - restart_text.get_width() // 2, HEIGHT * 2 // 3))
+screen.blit(quit_text, (WIDTH // 2 - quit_text.get_width() // 2, HEIGHT * 2 // 3 + 40))
+pygame.display.flip()
+
+while True:
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                pygame.quit()
+                sys.exit()
+            elif event.type == pygame.KEYDOWN:
+                if event.key == pygame.K_RETURN:  # Reiniciar sem mostrar a tela inicial
+                    main(skip_intro=True)
+                elif event.key == pygame.K_q:  # Fechar o jogo
+                    pygame.quit()
+                    sys.exit()
