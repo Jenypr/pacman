@@ -28,3 +28,25 @@ pacman_images = {
     PURPLE: pygame.image.load("images/pacman-purple.png"),
     CYAN: pygame.image.load("images/pacman-cyan.png")
 }
+
+for color in pacman_images:
+    pacman_images[color] = pygame.transform.scale(pacman_images[color], (80, 80))
+
+# Carregar imagens dos fantasmas
+ghost_images = {
+    "blinky": pygame.image.load("images/blinky.png"),
+    "pinky": pygame.image.load("images/pinky.png"),
+    "inky": pygame.image.load("images/inky.png"),
+    "clyde": pygame.image.load("images/clyde.png")
+}
+for ghost in ghost_images:
+    ghost_images[ghost] = pygame.transform.scale(ghost_images[ghost], (40, 40))
+
+# Variáveis do Pac-Man
+pacman_x, pacman_y = WIDTH // 2, HEIGHT // 2
+pacman_speed = 3
+direction = "RIGHT"
+
+# Animação da boca
+pacman_mouth_angle = 30
+mouth_opening = True
