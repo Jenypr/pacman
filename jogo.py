@@ -128,3 +128,18 @@ def move_ghosts(pacman_x, pacman_y):
             col, row = new_x // CELL_SIZE, new_y // CELL_SIZE
             if grid[row][col] != 1:  # Evita paredes
                 ghost["x"], ghost["y"] = new_x, new_y
+def check_collision(pacman_x, pacman_y):
+    for ghost in ghosts:
+        if abs(pacman_x - ghost["x"]) < CELL_SIZE and abs(pacman_y - ghost["y"]) < CELL_SIZE:
+            return True
+    return False
+
+
+def game_over_screen(score):
+    screen.fill(BLACK)
+
+    font = pygame.font.Font(None, 50)
+    game_over_text = font.render("GAME OVER", True, RED)
+    score_text = font.render(f"Score: {score}", True, YELLOW)
+    restart_text = font.render("Pressione ENTER para jogar:", True, WHITE)
+    quit_text = font.render("Pressione Q para sair:", True, WHITE)
