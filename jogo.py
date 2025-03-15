@@ -50,3 +50,35 @@ direction = "RIGHT"
 # Animação da boca
 pacman_mouth_angle = 30
 mouth_opening = True
+
+# Grade do jogo (1 = parede, 0 = caminho, 2 = pílula)
+# Reinicializa a grade (reseta as pílulas)
+grid = [
+        [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1],
+        [1,2,2,2,2,2,2,1,2,2,2,2,2,2,1],
+        [1,2,1,1,2,1,2,1,2,1,2,1,1,2,1],
+        [1,2,2,2,2,2,2,2,2,2,2,2,2,2,1],
+        [1,2,1,1,2,1,1,1,1,1,2,1,1,2,1],
+        [1,2,2,2,2,2,2,1,2,2,2,2,2,2,1],
+        [1,1,1,1,2,1,2,1,2,1,2,1,1,1,1],
+        [1,1,1,1,2,1,2,2,2,1,2,1,1,1,1],
+        [1,1,1,1,2,1,2,1,2,1,2,1,1,1,1],
+        [1,2,2,2,2,2,2,1,2,2,2,2,2,2,1],
+        [1,2,1,1,2,1,1,1,1,1,2,1,1,2,1],
+        [1,2,2,2,2,2,2,2,2,2,2,2,2,2,1],
+        [1,2,1,1,2,1,2,1,2,1,2,1,1,2,1],
+        [1,2,2,2,2,2,2,1,2,2,2,2,2,2,1],
+        [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1],
+    ]
+# Definição dos fantasmas
+ghosts = [
+    {"name": "blinky", "x": 7 * CELL_SIZE, "y": 7 * CELL_SIZE, "dx": CELL_SIZE, "dy": 0},
+    {"name": "pinky", "x": 7 * CELL_SIZE, "y": 8 * CELL_SIZE, "dx": -CELL_SIZE, "dy": 0},
+    {"name": "inky", "x": 6 * CELL_SIZE, "y": 7 * CELL_SIZE, "dx": 0, "dy": CELL_SIZE},
+    {"name": "clyde", "x": 8 * CELL_SIZE, "y": 7 * CELL_SIZE, "dx": 0, "dy": -CELL_SIZE}
+]
+# Função para resetar o jogo
+def reset_game():
+    global pacman_x, pacman_y, score, ghosts, grid
+    pacman_x, pacman_y = CELL_SIZE, CELL_SIZE
+    score = 0
