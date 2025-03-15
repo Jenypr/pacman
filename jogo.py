@@ -82,3 +82,35 @@ def reset_game():
     global pacman_x, pacman_y, score, ghosts, grid
     pacman_x, pacman_y = CELL_SIZE, CELL_SIZE
     score = 0
+    
+# Reinicializa a grade (reseta as pílulas)
+    grid = [
+        [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1],
+        [1,2,2,2,2,2,2,1,2,2,2,2,2,2,1],
+        [1,2,1,1,2,1,2,1,2,1,2,1,1,2,1],
+        [1,2,2,2,2,2,2,2,2,2,2,2,2,2,1],
+        [1,2,1,1,2,1,1,1,1,1,2,1,1,2,1],
+        [1,2,2,2,2,2,2,1,2,2,2,2,2,2,1],
+        [1,1,1,1,2,1,2,1,2,1,2,1,1,1,1],
+        [1,1,1,1,2,1,2,2,2,1,2,1,1,1,1],
+        [1,1,1,1,2,1,2,1,2,1,2,1,1,1,1],
+        [1,2,2,2,2,2,2,1,2,2,2,2,2,2,1],
+        [1,2,1,1,2,1,1,1,1,1,2,1,1,2,1],
+        [1,2,2,2,2,2,2,2,2,2,2,2,2,2,1],
+        [1,2,1,1,2,1,2,1,2,1,2,1,1,2,1],
+        [1,2,2,2,2,2,2,1,2,2,2,2,2,2,1],
+        [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1],
+    ]
+
+# Função para desenhar os fantasmas
+def draw_ghosts():
+    for ghost in ghosts:
+        screen.blit(ghost_images[ghost["name"]], (ghost["x"], ghost["y"]))
+
+# Variável de controle da velocidade dos fantasmas
+ghost_speed = 2  # Quanto maior o número, mais devagar os fantasmas se movem
+ghost_timer = 0  # Contador de frames
+
+def move_ghosts(pacman_x, pacman_y):
+    global ghosts, ghost_timer
+    ghost_timer += 1  # Incrementa o contador de frame
