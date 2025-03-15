@@ -114,3 +114,17 @@ ghost_timer = 0  # Contador de frames
 def move_ghosts(pacman_x, pacman_y):
     global ghosts, ghost_timer
     ghost_timer += 1  # Incrementa o contador de frame
+    
+    if ghost_timer % ghost_speed == 0:  # Apenas move os fantasmas a cada X ciclos do loop
+        for ghost in ghosts:
+            if random.randint(0, 3) == 0:
+                ghost["dx"], ghost["dy"] = random.choice([
+                    (CELL_SIZE, 0), (-CELL_SIZE, 0), (0, CELL_SIZE), (0, -CELL_SIZE)
+                ])
+
+            new_x = ghost["x"] + ghost["dx"]
+            new_y = ghost["y"] + ghost["dy"]
+
+            col, row = new_x // CELL_SIZE, new_y // CELL_SIZE
+            if grid[row][col] != 1:  # Evita paredes
+                ghost["x"], ghost["y"] = new_x, new_y
